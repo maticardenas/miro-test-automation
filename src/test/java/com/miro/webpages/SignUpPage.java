@@ -59,6 +59,12 @@ public class SignUpPage {
     @FindBy(xpath = "//a[normalize-space()='Sign in']")
     private WebElement signInButton;
 
+    @FindBy(xpath = "//div[@class='signup__error-item']")
+    private WebElement signUpErrorItem;
+
+    @FindBy(xpath = "//div[@class='signup__input-hint-text']")
+    private WebElement inputHint;
+
     public SignUpPage(WebDriver driver){
         this.driver = driver;
         this.jsExecutor = (JavascriptExecutor) driver;
@@ -123,5 +129,14 @@ public class SignUpPage {
     public boolean agreeWithTermsErrorExists(){
         wait.until(ExpectedConditions.visibilityOf(agreeWithTermsError));
         return agreeWithTermsError.isDisplayed();
+    }
+
+    public String getSignUpErrorItemText(){
+        return signUpErrorItem.getText();
+    }
+
+    public String getInputHintText(){
+        wait.until(ExpectedConditions.visibilityOf(inputHint));
+        return inputHint.getText();
     }
 }

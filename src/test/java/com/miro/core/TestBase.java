@@ -3,11 +3,12 @@ package com.miro.core;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.*;
@@ -29,7 +30,7 @@ public class TestBase implements ITest {
 
     private ThreadLocal<String> testName = new ThreadLocal<>();
 
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
     public void before() throws IOException, InvalidFormatException {
         dataManager = new TestCasesData();
         extent = new ExtentReports("target\\surefire-reports\\ExtentReport.html", true);
@@ -43,10 +44,10 @@ public class TestBase implements ITest {
      * @author Matías Cárdenas
      *
      */
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setDriver() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-        this.driver = new ChromeDriver();
+        WebDriverManager.edgedriver().setup();
+        this.driver = new EdgeDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
@@ -58,7 +59,7 @@ public class TestBase implements ITest {
      * @author Matías Cárdenas
      *
      */
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void BeforeMethod(Method method, Object[] testData, ITestContext ctx){
         String testNameStr = "";
 
@@ -84,7 +85,7 @@ public class TestBase implements ITest {
      * @author Matías Cárdenas
      *
      */
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void endTest(ITestResult result){
         if (result.getStatus() == ITestResult.FAILURE) {
             test.log(LogStatus.FAIL, result.getName());
@@ -105,7 +106,7 @@ public class TestBase implements ITest {
         return testName.get();
     }
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void tearDownSuite() {
         extent.flush();
         extent.close();
