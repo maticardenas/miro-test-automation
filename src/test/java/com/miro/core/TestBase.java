@@ -5,6 +5,7 @@ import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
@@ -12,20 +13,25 @@ import org.testng.Reporter;
 import org.testng.annotations.*;
 import org.testng.ITest;
 import org.testng.ITestContext;
+
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.concurrent.TimeUnit;
 
 
 public class TestBase implements ITest {
     public static ExtentTest test;
     public static ExtentReports extent;
     protected WebDriver driver;
+    protected TestCasesData dataManager;
 
     protected static Logger logger = LogManager.getLogger(TestBase.class.getName());
 
     private ThreadLocal<String> testName = new ThreadLocal<>();
 
     @BeforeSuite
-    public void before() {
+    public void before() throws IOException, InvalidFormatException {
+        dataManager = new TestCasesData();
         extent = new ExtentReports("target\\surefire-reports\\ExtentReport.html", true);
     }
 
@@ -41,6 +47,7 @@ public class TestBase implements ITest {
     public void setDriver() {
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         this.driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
 

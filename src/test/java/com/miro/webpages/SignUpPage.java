@@ -7,12 +7,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SignUpPage {
 
     private WebDriver driver;
     private JavascriptExecutor jsExecutor;
+    private WebDriverWait wait;
 
     private static String PAGE_URL = "https://miro.com/signup/";
 
@@ -42,7 +45,16 @@ public class SignUpPage {
     private WebElement getStartedNowButton;
 
     @FindBy(xpath = "//div[normalize-space()='Please enter your password.']")
-    private WebElement enterYourPassword;
+    private WebElement enterYourPasswordError;
+
+    @FindBy(xpath = "//div[normalize-space()='Please agree with the Terms to sign up.']")
+    private WebElement agreeWithTermsError;
+
+    @FindBy(xpath = "//div[normalize-space()='Please enter your email address.']")
+    private WebElement enterYourEmailError;
+
+    @FindBy(xpath = "//div[normalize-space()='Please enter your name.']")
+    private WebElement enterYourNameError;
 
     @FindBy(xpath = "//a[normalize-space()='Sign in']")
     private WebElement signInButton;
@@ -52,6 +64,7 @@ public class SignUpPage {
         this.jsExecutor = (JavascriptExecutor) driver;
         driver.get(PAGE_URL);
         driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, 5);
         PageFactory.initElements(driver, this);
     }
 
@@ -93,6 +106,22 @@ public class SignUpPage {
     }
 
     public boolean requiredPasswordMessageExists(){
-        return enterYourPassword.isDisplayed();
+        wait.until(ExpectedConditions.visibilityOf(enterYourPasswordError));
+        return enterYourPasswordError.isDisplayed();
+    }
+
+    public boolean enterYourNameErrorExists(){
+        wait.until(ExpectedConditions.visibilityOf(enterYourNameError));
+        return enterYourNameError.isDisplayed();
+    }
+
+    public boolean enterYourEmailErrorExists(){
+        wait.until(ExpectedConditions.visibilityOf(enterYourEmailError));
+        return enterYourEmailError.isDisplayed();
+    }
+
+    public boolean agreeWithTermsErrorExists(){
+        wait.until(ExpectedConditions.visibilityOf(agreeWithTermsError));
+        return agreeWithTermsError.isDisplayed();
     }
 }
