@@ -44,6 +44,9 @@ public class SignUpPage {
     @FindBy(xpath = "//div[normalize-space()='Please enter your password.']")
     private WebElement enterYourPassword;
 
+    @FindBy(xpath = "//a[normalize-space()='Sign in']")
+    private WebElement signInButton;
+
     public SignUpPage(WebDriver driver){
         this.driver = driver;
         this.jsExecutor = (JavascriptExecutor) driver;
@@ -60,6 +63,10 @@ public class SignUpPage {
         getStartedNowButton.click();
     }
 
+    public void clickSignIn(){
+        signInButton.click();
+    }
+
     public void selectHowDidYouHearItem(String itemText){
         howDidYouHearMainDropdown.click();
         driver.findElement(By.linkText(itemText)).click();
@@ -71,6 +78,18 @@ public class SignUpPage {
 
     public void selectSignUpSubscribe(){
         jsExecutor.executeScript("arguments[0].click();", signUpSubscribe);
+    }
+
+    public void setUserName(String userName){
+        name.sendKeys(userName);
+    }
+
+    public void setEmail(String userEmail){
+        email.sendKeys(userEmail);
+    }
+
+    public void setPassword(String userPassword){
+        password.sendKeys(userPassword);
     }
 
     public boolean requiredPasswordMessageExists(){

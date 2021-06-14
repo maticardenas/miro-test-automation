@@ -10,11 +10,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.*;
-
 import org.testng.ITest;
 import org.testng.ITestContext;
-
 import java.lang.reflect.Method;
+
 
 public class TestBase implements ITest {
     public static ExtentTest test;
