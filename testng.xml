@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Miro-Suite" verbose="1" >
+    <test name="Smoke">
+        <groups>
+            <run>
+                <include name="smokeTest"></include>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.miro.tests.SignUpTest" />
+        </classes>
+    </test>
+</suite>
