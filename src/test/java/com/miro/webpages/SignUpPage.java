@@ -65,6 +65,9 @@ public class SignUpPage {
     @FindBy(xpath = "//div[@class='signup__input-hint-text']")
     private WebElement inputHint;
 
+    @FindBy(xpath = "//div[@class='signup__input-hint-text signup__input-hint-text--color-soso']")
+    private WebElement inputHintSoSo;
+
     public SignUpPage(WebDriver driver){
         this.driver = driver;
         this.jsExecutor = (JavascriptExecutor) driver;
@@ -132,11 +135,17 @@ public class SignUpPage {
     }
 
     public String getSignUpErrorItemText(){
+        wait.until(ExpectedConditions.visibilityOf(signUpErrorItem));
         return signUpErrorItem.getText();
     }
 
     public String getInputHintText(){
         wait.until(ExpectedConditions.visibilityOf(inputHint));
         return inputHint.getText();
+    }
+
+    public boolean inputHintSoSoExists(){
+        wait.until(ExpectedConditions.visibilityOf(inputHintSoSo));
+        return inputHintSoSo.isDisplayed();
     }
 }

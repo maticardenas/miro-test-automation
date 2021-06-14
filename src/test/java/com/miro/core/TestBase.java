@@ -24,15 +24,12 @@ public class TestBase implements ITest {
     public static ExtentTest test;
     public static ExtentReports extent;
     protected WebDriver driver;
-    protected TestCasesData dataManager;
-
     protected static Logger logger = LogManager.getLogger(TestBase.class.getName());
 
     private ThreadLocal<String> testName = new ThreadLocal<>();
 
     @BeforeSuite(alwaysRun = true)
     public void before() throws IOException, InvalidFormatException {
-        dataManager = new TestCasesData();
         extent = new ExtentReports("target\\surefire-reports\\ExtentReport.html", true);
     }
 
