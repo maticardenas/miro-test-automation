@@ -1,5 +1,6 @@
 package com.miro.tests;
 
+import com.miro.core.TestBase;
 import com.miro.webpages.SignUpPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
@@ -11,28 +12,25 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
-public class SignUpTest {
-    WebDriver driver;
+public class SignUpTest extends TestBase {
     SignUpPage signUpPage;
 
-    @BeforeClass
-    public static void setupClass(){
-        //WebDriverManager.chromedriver().setup();
-    }
+//    @BeforeClass
+//    public static void setupClass(){
+//        //WebDriverManager.chromedriver().setup();
+//    }
 
     @BeforeMethod
     public void setupTest(){
-        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-        driver = new ChromeDriver();
         signUpPage = new SignUpPage(driver);
     }
 
-    @Test
-    public void checkMainOpened(){
+    @Test(groups = {"smokeTest"})
+    public void checkMainOpensSuccessfully(){
         Assert.assertTrue(signUpPage.isPageOpened());
     }
 
-    @Test
+    @Test(groups = {"smokeTest"})
     public void getStartedWithoutFill(){
         // Given
         signUpPage.clickGetStartedNow();
