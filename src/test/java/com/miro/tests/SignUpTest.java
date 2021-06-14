@@ -94,7 +94,7 @@ public class SignUpTest extends TestBase {
         // Given
         int userNumber = new Random().nextInt(1000);
         signUpPage.setUserName("test_user_" + userNumber);
-        signUpPage.setEmail("test_user_" + userNumber + "@test.com");
+        signUpPage.setEmail("an_invalid_email");
         signUpPage.setPassword("test_user_pass_" + userNumber);
         signUpPage.selectSignUpTerms();
         signUpPage.selectSignUpSubscribe();
