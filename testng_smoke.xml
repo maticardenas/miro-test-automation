@@ -2,6 +2,7 @@
 
 <suite name="Miro-Suite" verbose="1" >
     <test name="Smoke">
+        <parameter name="browser" value="EDGE"/>
         <groups>
             <run>
                 <include name="smokeTest"></include>

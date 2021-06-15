@@ -107,8 +107,8 @@ public class SignUpTest extends TestBase {
         signUpPage.clickGetStartedNow();
 
         // Then
-        String expectedMessage = "This doesn’t look like an email address. Please check it for typos and try again.";
-        Assert.assertEquals(expectedMessage, signUpPage.getSignUpErrorItemText());
+        String expectedMessage = "look like an email address. Please check it for typos and try again.";
+        Assert.assertTrue(signUpPage.getSignUpErrorItemText().contains(expectedMessage));
     }
 
 

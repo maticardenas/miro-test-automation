@@ -2,6 +2,7 @@
 
 <suite name="Miro-Regression-Suite" verbose="1" >
     <test name="Regression">
+        <parameter name="browser" value="EDGE"/>
         <groups>
             <run>
                 <include name="smokeTest"></include>

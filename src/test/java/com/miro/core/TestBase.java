@@ -8,7 +8,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.*;
@@ -41,10 +43,22 @@ public class TestBase implements ITest {
      * @author Matías Cárdenas
      *
      */
+    @Parameters("browser")
     @BeforeClass(alwaysRun = true)
-    public void setDriver() {
-        WebDriverManager.edgedriver().setup();
-        this.driver = new EdgeDriver();
+    public void beforeClass(String browser) {
+        if(browser.equals("EDGE")){
+            WebDriverManager.edgedriver().setup();
+            this.driver = new EdgeDriver();
+        }else if(browser.equals("FIREFOX")){
+            WebDriverManager.firefoxdriver().setup();
+            this.driver = new FirefoxDriver();
+        }else if(browser.equals("CHROME")){
+            WebDriverManager.chromedriver().setup();
+            this.driver = new ChromeDriver();
+        }else{
+            reportLog("Browser not supported");
+        }
+
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
@@ -105,6 +119,7 @@ public class TestBase implements ITest {
 
     @AfterSuite(alwaysRun = true)
     public void tearDownSuite() {
+        driver.close();
         extent.flush();
         extent.close();
     }
