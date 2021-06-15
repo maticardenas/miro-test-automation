@@ -56,5 +56,10 @@ mvn -PSmoke test
 On the project folder, execute following command. It will execute full suite of tests, 32 test cases in aproximately ~12/13 seconds.
 
 ```bash
-mvn -PSmoke test
+mvn -PRegression test
 ```
+
+
+## REPORTING
+
+Once finished the execution, the tool generates a report at target/surefire-reports/ExtentReport.html, however there is a shortcut at root folder of the project called miro_report.html where you can access it directly
