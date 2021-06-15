@@ -9,6 +9,7 @@ import com.miro.webpages.SignInPage;
 import com.miro.webpages.SignUpPage;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -18,10 +19,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-
-
 public class SignUpTest extends TestBase {
     SignUpPage signUpPage;
+
+    @BeforeMethod(alwaysRun = true)
+    public void beforeMethod(){
+        signUpPage.test = test;
+    }
 
     @BeforeMethod(alwaysRun = true)
     public void setupTest() {
@@ -166,6 +170,37 @@ public class SignUpTest extends TestBase {
         // Then
         MiroTestUtils.validateErrorMessage(signUpPage, expectedRequiredMessages);
 
+    }
+
+    @Test(groups = {"regressionTest"})
+    public void continueSignUpWithGoogle(){
+        // Given - When
+        signUpPage.clickSignUpWithGoogle();
+
+        // Then
+        Assert.assertTrue(signUpPage.continueSignUpExists());
+    }
+
+    @Test(groups = {"regressionTest"})
+    public void continueSignUpWithGoogleWithoutTerms(){
+        // Given - When
+        signUpPage.clickSignUpWithGoogle();
+        signUpPage.clickContinueToSignUpGoogle();
+
+        // Then
+        Assert.assertTrue(signUpPage.agreeWithTermsGoogleErrorExists());
+    }
+
+    @Test(groups = {"regressionTest"})
+    public void continueSignUpWithGoogleSuccessful(){
+        // Given - When
+        signUpPage.clickSignUpWithGoogle();
+        signUpPage.selectSignUpTermsGoogle();
+        signUpPage.selectSignUpSubscribeGoogle();
+        signUpPage.clickContinueToSignUpGoogle();
+
+        // Then
+        Assert.assertTrue(driver.getTitle().contains("Google Accounts"));
     }
 
 
