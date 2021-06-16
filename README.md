@@ -1,6 +1,8 @@
 # Miro Test Automation
 
-This is a small framework with positive & negative / smoke & regression front-end automated test cases for Miro Sign Up Page (https://miro.com/signup/) 
+This is a small framework with positive & negative / smoke & regression front-end automated test cases for Miro Sign Up Page (https://miro.com/signup/).
+
+For full details MiroTestAutomation.pdf file can be checked at repo's root folder.
 
 ## Requirements
 
@@ -51,13 +53,30 @@ On the project folder, execute following command. It will execute 4 smoke basic 
 mvn -PSmoke test
 ```
 
+#### Test cases included:
+
+* Check page opens successfully
+* Get Started without fill 
+* Sign In button redirects successfulyl
+* Sign Up User Positive Test Case
+
 ### 2) Regression tests
 
-On the project folder, execute following command. It will execute full suite of tests, 32 test cases in aproximately 4 minutes.
+On the project folder, execute following command. It will execute full suite of tests, 28 test cases in aproximately 3 minutes.
 
 ```bash
 mvn -PRegression test
 ```
+
+##### Test cases included:
+
+ -> ALL smokes tests plus:
+ 
+* Sign up positive without subscribe 
+* Invalid email format
+* Short password - Parametrized -> 7 test cases in total
+* Unsafe password - Parametrized -> 4 tests cases in total
+* Sign Up required fields - Parametrized (from Excel Sheet) -> 8 test cases in total
 
 
 ## REPORTING
