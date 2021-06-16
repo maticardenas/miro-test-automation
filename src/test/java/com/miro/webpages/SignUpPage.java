@@ -39,9 +39,6 @@ public class SignUpPage {
     @FindBy(id = "password")
     private WebElement password;
 
-    @FindBy(css = ".speero-dropdown")
-    private WebElement howDidYouHearMainDropdown;
-
     @FindBy(id = "signup-terms")
     private WebElement signUpTerms;
 
@@ -112,11 +109,6 @@ public class SignUpPage {
     public void clickSignIn(){
         reportLog("Click at SignIn");
         signInButton.click();
-    }
-
-    public void selectHowDidYouHearItem(String itemText){
-        howDidYouHearMainDropdown.click();
-        driver.findElement(By.linkText(itemText)).click();
     }
 
     public void selectSignUpTerms(){
