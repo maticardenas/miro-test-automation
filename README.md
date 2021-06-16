@@ -65,7 +65,9 @@ mvn -PRegression test
 Once finished the execution, the tool generates a report at target/surefire-reports/ExtentReport.html.
 
 
+## SOLUTION DESIGN
 
+Design of solution and more descriptions can be checked at file MiroTestAutomation.pdf provided in the root folder of the repository
 
 
 
