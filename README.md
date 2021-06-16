@@ -53,7 +53,7 @@ mvn -PSmoke test
 
 ### 2) Regression tests
 
-On the project folder, execute following command. It will execute full suite of tests, 32 test cases in aproximately ~12/13 seconds.
+On the project folder, execute following command. It will execute full suite of tests, 32 test cases in aproximately 4 minutes.
 
 ```bash
 mvn -PRegression test
