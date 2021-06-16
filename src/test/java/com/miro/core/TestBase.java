@@ -46,17 +46,22 @@ public class TestBase implements ITest {
     @Parameters("browser")
     @BeforeClass(alwaysRun = true)
     public void beforeClass(String browser) {
-        if(browser.equals("EDGE")){
-            WebDriverManager.edgedriver().setup();
-            this.driver = new EdgeDriver();
-        }else if(browser.equals("FIREFOX")){
-            WebDriverManager.firefoxdriver().setup();
-            this.driver = new FirefoxDriver();
-        }else if(browser.equals("CHROME")){
-            WebDriverManager.chromedriver().setup();
-            this.driver = new ChromeDriver();
-        }else{
-            reportLog("Browser not supported");
+        switch(browser) {
+            case "EDGE":
+                WebDriverManager.edgedriver().setup();
+                this.driver = new EdgeDriver();
+                break;
+            case "CHROME":
+                WebDriverManager.chromedriver().setup();
+                this.driver = new ChromeDriver();
+                break;
+            case "FIREFOX":
+                WebDriverManager.firefoxdriver().setup();
+                this.driver = new FirefoxDriver();
+                break;
+            default:
+                reportLog("Browser not supported");
+                break;
         }
 
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
