@@ -65,11 +65,11 @@ mvn -PRegression test
 Once finished the execution, the tool generates a report at target/surefire-reports/ExtentReport.html, however there is a shortcut at root folder of the project called miro_report.html where you can access it directly
 
 
-<img src="/images/report_1.JPG?raw=true" height="400" width="400" />
+<img src="/images/report_1.JPG?raw=true" height="250" width="400" />
 
-<img src="/images/report_failed_sample.JPG?raw=true" />
+<img src="/images/report_failed_sample.JPG?raw=true" height="250" width="400" />
 
-<img src="/images/repo_charts.JPG?raw=true" />
+<img src="/images/repo_charts.JPG?raw=true" height="250" width="400" />
 
 
 
