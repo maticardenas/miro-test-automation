@@ -1,6 +1,8 @@
 # Miro Test Automation
 
-This is a small framework with positive & negative / smoke & regression front-end automated test cases for Miro Sign Up Page (https://miro.com/signup/) 
+This is a small framework with positive & negative / smoke & regression front-end automated test cases for Miro Sign Up Page (https://miro.com/signup/).
+
+For full details MiroTestAutomation.pdf file can be checked at repo's root folder.
 
 ## Requirements
 
