@@ -17,6 +17,18 @@ public class MiroTestUtils {
         }
     }
 
+
+    /**
+     *
+     * Validates if each of the expected error messages is present in the Sign Up Page after a parametrized negative
+     * test case execution
+     *
+     * @param signUpPage The SignUpPage PageObject object to access the elements to validate
+     * @param expectedRequiredScenarios An ArrayList with all expected messages to validate against the presents at the
+     *                                  page.
+     *
+     *
+     * */
     public static void validateErrorMessage(SignUpPage signUpPage, ArrayList<RequiredFieldsScenarios> expectedRequiredScenarios){
         for (RequiredFieldsScenarios expectedMsg: expectedRequiredScenarios) {
             switch(expectedMsg){
