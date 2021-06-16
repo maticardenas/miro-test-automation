@@ -53,7 +53,7 @@ On the project folder, execute following command. It will execute 4 smoke basic 
 mvn -PSmoke test
 ```
 
-# Test cases included:
+#### Test cases included:
 
 * Check page opens successfully
 * Get Started without fill 
@@ -68,7 +68,7 @@ On the project folder, execute following command. It will execute full suite of 
 mvn -PRegression test
 ```
 
-# Test cases included:
+##### Test cases included:
 
  -> ALL smokes tests plus:
  
