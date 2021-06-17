@@ -19,6 +19,8 @@ import org.testng.ITestContext;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
 
@@ -32,7 +34,8 @@ public class TestBase implements ITest {
 
     @BeforeSuite(alwaysRun = true)
     public void before() throws IOException, InvalidFormatException {
-        extent = new ExtentReports("target\\surefire-reports\\ExtentReport.html", true);
+        Path filePath = Paths.get("target", "surefire-reports", "ExtentReport.html");
+        extent = new ExtentReports(filePath.toString(), true);
     }
 
 

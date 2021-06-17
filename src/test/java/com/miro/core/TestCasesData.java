@@ -6,6 +6,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Iterator;
 
 public class TestCasesData {
@@ -13,7 +15,8 @@ public class TestCasesData {
     ExcelManager em;
 
     public TestCasesData() throws IOException, InvalidFormatException {
-        em = new ExcelManager(System.getProperty("user.dir") + "\\src\\test\\java\\com\\miro\\data\\miro_data.xlsx");
+        Path filePath = Paths.get(System.getProperty("user.dir"), "src", "test", "java", "com", "miro", "data", "miro_data.xlsx");
+        em = new ExcelManager(filePath.toString());
     }
 
     /**
