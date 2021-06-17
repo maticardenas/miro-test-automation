@@ -57,7 +57,7 @@ mvn -PSmoke test
 
 * Check page opens successfully
 * Get Started without fill 
-* Sign In button redirects successfulyl
+* Sign In button redirects successfully
 * Sign Up User Positive Test Case
 
 ### 2) Regression tests
